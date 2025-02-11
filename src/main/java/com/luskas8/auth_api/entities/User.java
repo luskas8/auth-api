@@ -3,6 +3,10 @@ package com.luskas8.auth_api.entities;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.luskas8.auth_api.controller.dto.LoginRequestRecord;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,4 +46,8 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
+    public boolean isLoginCorrect(LoginRequestRecord loginRequestRecord, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(loginRequestRecord.password(), this.password);
+    }
 }
