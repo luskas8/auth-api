@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 postgres_data*
+src/main/resources/keys*
 
 ### STS ###
 .apt_generated
